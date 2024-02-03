@@ -1,0 +1,12 @@
+<div>
+  <label htmlFor="title" class="text-primary-blue flex items-center gap-1 mb-1"
+    >Title</label
+  >
+  <input
+    id="title"
+    type="text"
+    class="py-2 px-3 rounded-md bg-[#1e2027] text-white outline-none w-full pl-2"
+    [placeholder]="placeholder"
+    (keyup)="setValue($event)"
+  />
+</div>

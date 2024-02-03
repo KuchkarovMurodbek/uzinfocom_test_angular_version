@@ -1,0 +1,96 @@
+<table class="w-full text-sm text-left rtl:text-right">
+  <thead class="text-sm text-[#d0d2d6] bg-primary-light-gray font-sans">
+    <tr>
+      @for (item of Header; track item.id) {
+      <th [ngClass]="item.style" class="px-6 py-3">
+        <button
+          (click)="item.ordering !== '' && sortFunction(item.ordering)"
+          class="flex items-center gap-1"
+        >
+          {{ item.title }}
+          @if (sort.order=="") { "" }@else if (item.ordering==sort.order &&
+          sort.is_order) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="m12 16.175l3.9-3.875q.275-.275.688-.288t.712.288q.275.275.275.7t-.275.7l-4.6 4.6q-.15.15-.325.213t-.375.062q-.2 0-.375-.062T11.3 18.3l-4.6-4.6q-.275-.275-.288-.687T6.7 12.3q.275-.275.7-.275t.7.275zm0-6L15.9 6.3q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7l-4.6 4.6q-.15.15-.325.213t-.375.062q-.2 0-.375-.062T11.3 12.3L6.7 7.7q-.275-.275-.288-.687T6.7 6.3q.275-.275.7-.275t.7.275z"
+            ></path>
+          </svg>
+          }@else if(item.ordering==sort.order) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 13.825L8.1 17.7q-.275.275-.687.288T6.7 17.7q-.275-.275-.275-.7t.275-.7l4.6-4.6q.15-.15.325-.213t.375-.062q.2 0 .375.062t.325.213l4.6 4.6q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275zm0-6L8.1 11.7q-.275.275-.687.288T6.7 11.7q-.275-.275-.275-.7t.275-.7l4.6-4.6q.15-.15.325-.212T12 5.425q.2 0 .375.063t.325.212l4.6 4.6q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275z"
+            ></path>
+          </svg>
+          }
+        </button>
+      </th>
+      }
+    </tr>
+  </thead>
+  <tbody class="bg-primary-gray text-white">
+    @for (item of data; track item.id) {
+    <tr>
+      <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >
+        {{ item.id }}
+      </td>
+      <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >
+        <span>
+          {{ item.title }} @if (item.hasSolution ) {<span
+            class="bg-[#182a25] text-[#239557] py-1 px-3 rounded-2xl mt-1 flex items-center gap-1 w-fit"
+          >
+            Solution</span
+          >}
+        </span>
+      </td>
+      <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >
+        @for (element of item.tags; track element.id) {
+        <button
+          class="bg-primary-blue text-white rounded-2xl py-1 px-2 text-[12px] mx-0.5"
+        >
+          {{ element.name }}
+        </button>
+        }
+      </td>
+      <td
+        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      >
+        <span
+          [ngClass]="item.difficultyTitle | level"
+          class="py-1 px-3 text-[12px] mx-0.5 text-white rounded-md"
+        >
+          {{ item.difficultyTitle }}
+        </span>
+      </td>
+      <td class="px-6 py-4 text-center">
+        <span class="flex flex-col text-[14px]">
+          <span class="flex items-center gap-1">
+            {{ item.likesCount }} like
+          </span>
+          <span class="flex items-center gap-1">
+            {{ item.dislikesCount }} dislike
+          </span>
+        </span>
+      </td>
+      <td class="px-6 py-4">
+        <span class="bg-[#132b32] text-white py-1 px-2 text-[12px] mx-0.5">
+          <span class="text-[#21955a]">{{ item.solved }}</span
+          >/
+          <span class="text-[#088b9c]">{{ item.attemptsCount }}</span>
+        </span>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

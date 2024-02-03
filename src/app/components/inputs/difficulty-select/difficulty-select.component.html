@@ -1,0 +1,16 @@
+<div>
+    <label
+      htmlFor="title"
+      class="text-primary-blue flex items-center gap-1 mb-1"
+      >Difficylty</label
+    >
+    <ng-select
+      [items]="options"
+      bindLabel="name"
+      bindValue="id"
+      [(ngModel)]="value"
+      (change)="onSelectChange()"
+    >
+
+    </ng-select>
+  </div>

@@ -1,0 +1,14 @@
+
+<div class="flex  gap-3">
+<button class="text-white" (click)="prevPage()">
+   <<
+</button>
+@for (page of getPagesArray(); track page) {
+  <button (click)="setPage(page)" [ngClass]="{'bg-primary-blue ': page == active_page }" class="w-10 h-10 rounded-full">
+    {{ page === 0 ? "..." : page }}
+  </button>
+}<button class="text-white" (click)="nextPage()">
+  >>
+</button>
+
+</div>

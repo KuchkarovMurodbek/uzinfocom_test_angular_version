@@ -1,0 +1,43 @@
+<div class="p-5 w-full h-fit bg-[#0f1014]">
+  <div class="w-full h-fit py-2 sm:py-10 bg-primary-gray my-5 rounded-lg flex flex-col gap-5 justify-center px-4" >
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <app-search-input [placeholder]="'Title'" (onSearch)="onSearch($event)" />
+      <p class="text-white"> Title: <br /> Tags: </p>
+      <app-difficulty-select [value]="difficulty" (onDifficulty)="onDifficulty($event)" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <app-boolean-select [title]="'Checker'" (onBooleanSelect)="onChecker($event)" [value]="boolean_value.has_checker" />
+      <app-boolean-select [title]="'Check Inputs'" (onBooleanSelect)="onCheckerInput($event)" [value]="boolean_value.has_check_input" />
+      <app-boolean-select [title]="'Solution'" (onBooleanSelect)="onSolution($event)" [value]="boolean_value.has_solution" />
+      <app-boolean-select [title]="'Partial Solvable:'" (onBooleanSelect)="onPartialSolution($event)" [value]="boolean_value.partial_solvable" />
+    </div>
+  </div>
+ @if (data.length>0) {
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <app-table [data]="data" [sort]="sort" (sort_output)="onSort($event)" />
+  </div>
+  } @else {
+  <div class="bg-primary-light-gray text-white flex justify-center items-center h-[300px] w-full" >
+    Data Not Found
+  </div>
+  }
+
+  <div
+    class="flex flex-col-reverse gap-2 sm:flex-row justify-between text-white my-10"
+  >
+    <div class="hidden sm:block"></div>
+    <div>
+      <app-pagination
+        (onPage)="onPage($event)"
+        [pagesCount]="pagesCount"
+        [active_page]="page"
+      />
+    </div>
+    <div>
+      <app-page-size
+        [page_size]="page_size"
+        (pageSizeChange)="onPageSizeChange($event)"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div>
+  <label
+    htmlFor="title"
+    class="text-primary-blue flex items-center gap-1 mb-1"
+    >{{ title }}</label
+  >
+  <ng-select
+    [items]="values"
+    class="bg-white text-blue-800"
+    style="font-family: roboto"
+    bindLabel="name"
+    bindValue="id"
+    [(ngModel)]="value"
+    (change)="onSelectChange()"
+  >
+  </ng-select>
+</div>

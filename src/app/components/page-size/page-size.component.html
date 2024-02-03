@@ -1,0 +1,26 @@
+<div class="relative inline-block text-left">
+  @if (isDropdownOpen) {
+  <div
+    class="absolute -top-32 right-0 z-10 mt-2 w-fit origin-top-right rounded-md bg-primary-light-gray shadow-lg"
+  >
+    <div class="">
+      @for (item of menuItems; track item.id) {
+      <button
+        [ngClass]="{'bg-primary-blue': item.size == page_size }"
+        class="text-white block px-6 py-2 text-sm"
+        (click)="pageSizeFunction(item.size)"
+      >
+        {{ item.size }}/Page
+      </button>
+      }
+    </div>
+  </div>
+  }
+  <div>
+    <button
+      (click)="showSelect()"
+      type="button"
+      class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-primary-light-gray px-3 py-2 text-sm font-semibold text-white shadow-sm "
+    >{{page_size}}/Page</button>
+  </div>
+</div>
